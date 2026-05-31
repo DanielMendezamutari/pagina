@@ -1,5 +1,5 @@
 <script setup>
-import heroImage from '@images/front-pages/landing-page/hero-dashboard-light.png'
+import profilePhoto from '@images/profile/profile-daniel.png'
 import { useConfigStore } from '@core/stores/config'
 
 const store = useConfigStore()
@@ -12,33 +12,162 @@ definePage({
   },
 })
 
-const whatsappUrl = 'https://wa.me/59167369293?text=Hola%2C%20quiero%20mi%20consultoria%20o%20auditoria%20gratis%20para%20un%20sistema%20web.'
+const whatsappUrl = 'https://wa.me/59167369293?text=Hola%20Daniel%2C%20me%20interesa%20conversar%20sobre%20un%20proyecto%20de%20software.'
+const email = 'contacto@ribersoft.com'
+const githubUser = 'DanielMendezamutari'
+const githubUrl = `https://github.com/${githubUser}`
+// Pega aquí tu LinkedIn cuando lo tengas: https://www.linkedin.com/in/tu-perfil
+const linkedinUrl = ''
 
-const benefits = [
+const experience = [
   {
-    title: 'Ahorra tiempo',
-    icon: 'ri-time-line',
+    role: 'Fundador y Desarrollador de Software',
+    company: 'RiberSoft',
+    place: 'Santa Cruz, Bolivia',
+    period: 'Actualidad',
+    items: ['Sistemas en producción con clientes activos', 'Soporte y mejoras continuas', 'POS, inventario y facturación'],
   },
   {
-    title: 'Evita pérdidas',
-    icon: 'ri-shield-check-line',
+    role: 'Administrador de Operaciones',
+    company: 'Casa22',
+    place: 'Santa Cruz, Bolivia',
+    period: 'Experiencia previa',
+    items: ['Red multisucursal', 'Inventario, caja y personal', 'Control operativo y reportes'],
   },
   {
-    title: 'Vende más',
-    icon: 'ri-line-chart-line',
+    role: 'Técnico en Mantenimiento y Reparación',
+    company: 'Comercial Chiriguano',
+    place: 'Santa Cruz, Bolivia',
+    period: 'Experiencia previa',
+    items: ['Mantenimiento de equipos de cómputo', 'Diagnóstico y reparación de hardware', 'Soporte técnico a usuarios'],
   },
 ]
 
-const portfolio = [
-  'Farmacia Magno',
-  'Farmacia Sanandita',
-  'Mikafarma',
-  'Farmacia Guzman',
-  'Tienda Kuñatai',
-  'Clínica AOD',
-  'Medifem',
-  'Licorería Punto Frío',
-  'Pollería Mi Pollito',
+const githubRepos = [
+  {
+    name: 'pagina',
+    desc: 'Landing y sistemas web con Vue.js',
+    lang: 'Vue',
+    url: 'https://github.com/DanielMendezamutari/pagina',
+  },
+  {
+    name: 'nightpos',
+    desc: 'Sistema POS con PHP',
+    lang: 'PHP',
+    url: 'https://github.com/DanielMendezamutari/nightpos',
+  },
+  {
+    name: 'moda',
+    desc: 'Sistema para tienda de ropa',
+    lang: 'Vue',
+    url: 'https://github.com/DanielMendezamutari/moda',
+  },
+  {
+    name: 'cursoDeFrontendDeveloper',
+    desc: 'HTML, CSS y responsive design',
+    lang: 'HTML',
+    url: 'https://github.com/DanielMendezamutari/cursoDeFrontendDeveloper',
+  },
+]
+
+const stack = [
+  'PHP',
+  'Laravel',
+  'Vue.js',
+  'JavaScript',
+  'MySQL',
+  'APIs REST',
+  'SaaS',
+  'POS',
+  'Git',
+  'Docker',
+]
+
+const clients = [
+  {
+    name: 'Farmacia Magno',
+    type: 'Farmacia',
+    system: 'POS e inventario',
+    review: 'Con el sistema tenemos inventario y caja al día. Nos facilita mucho el trabajo diario y estamos muy contentos.',
+  },
+  {
+    name: 'Farmacia Sanandita',
+    type: 'Farmacia',
+    system: 'POS e inventario',
+    review: 'Ya no imagino operar sin el sistema. Los reportes son claros y todo el equipo lo usa a diario.',
+  },
+  {
+    name: 'Mikafarma',
+    type: 'Farmacia',
+    system: 'POS e inventario',
+    review: 'Nos ayuda a controlar productos y facturación. Funciona bien y estamos satisfechos con el servicio.',
+  },
+  {
+    name: 'Farmacia Guzman',
+    type: 'Farmacia',
+    system: 'POS e inventario',
+    review: 'El sistema cumple lo que necesitamos. Inventario, ventas y caja bien organizados. Muy buena experiencia.',
+  },
+  {
+    name: 'Tienda Kuñatai',
+    type: 'Retail',
+    system: 'Ventas e inventario',
+    review: 'Nos ordenó las ventas y el stock. Es fácil de usar y nos ha servido mucho en el negocio.',
+  },
+  {
+    name: 'Clínica AOD',
+    type: 'Salud',
+    system: 'Gestión operativa',
+    review: 'El software nos apoya en la operación diaria. Procesos más ordenados y el equipo está conforme.',
+  },
+  {
+    name: 'Medifem',
+    type: 'Salud',
+    system: 'Gestión operativa',
+    review: 'Estamos satisfechos con el sistema. Nos ayuda a trabajar de forma más eficiente cada día.',
+  },
+  {
+    name: 'Licorería Punto Frío',
+    type: 'Comercio',
+    system: 'POS e inventario',
+    review: 'Controlamos ventas e inventario sin complicaciones. El sistema funciona muy bien para nosotros.',
+  },
+  {
+    name: 'Pollería Mi Pollito',
+    type: 'Restaurante',
+    system: 'POS e inventario',
+    review: 'La caja y el inventario van al día. Nos simplifica el trabajo y estamos contentos con el resultado.',
+  },
+]
+
+const hobbies = [
+  {
+    icon: 'ri-volleyball-line',
+    label: 'Vóleibol',
+    note: 'Juego vóleibol. Me gusta el deporte, el equipo y pasarla bien.',
+  },
+  {
+    icon: 'ri-motorbike-line',
+    label: 'Moto con mi hija',
+    note: 'Me encanta andar en moto con mi hija. Son momentos que valoro mucho.',
+  },
+  {
+    icon: 'ri-restaurant-line',
+    label: 'Majao',
+    note: 'Me gusta comer un buen majao. Cosas simples de acá, de Bolivia.',
+  },
+  {
+    icon: 'ri-book-open-line',
+    label: 'Aprender siempre',
+    note: 'Me compro cursos y busco aprender algo nuevo todo el tiempo.',
+  },
+]
+
+const growthFocus = [
+  'Técnicas de ventas',
+  'Crecimiento personal',
+  'Persuasión y negociación',
+  'Mentalidad emprendedora',
 ]
 </script>
 
@@ -46,17 +175,21 @@ const portfolio = [
   <main class="mobile-landing">
     <VContainer class="page-shell">
       <nav class="topbar">
-        <div class="brand-mark">
-          <span>R</span>
-        </div>
+        <VAvatar
+          :image="profilePhoto"
+          size="38"
+          class="nav-avatar"
+        />
         <div class="brand-copy">
-          <strong>Ribersoft</strong>
-          <small>Software para negocios</small>
+          <strong>Daniel Méndez</strong>
+          <small>Currículum web</small>
         </div>
         <VSpacer />
         <div class="nav-links">
-          <a href="#soluciones">Soluciones</a>
+          <a href="#experiencia">Experiencia</a>
+          <a href="#sobre-mi">Sobre mí</a>
           <a href="#clientes">Clientes</a>
+          <a href="#github">GitHub</a>
         </div>
         <VBtn
           :href="whatsappUrl"
@@ -65,27 +198,46 @@ const portfolio = [
           color="warning"
           class="top-whatsapp"
         >
-          Agenda tu demo
+          Contactar
         </VBtn>
       </nav>
 
-      <section class="hero-section">
+      <section
+        id="perfil"
+        class="hero-section"
+      >
+        <VAvatar
+          :image="profilePhoto"
+          size="128"
+          class="profile-photo"
+        />
+
         <div class="hero-copy">
           <VChip
             color="success"
             variant="elevated"
             class="hero-badge"
           >
-            Auditoría gratis
+            Disponible para proyectos
           </VChip>
 
-          <h1>
-            Ahorra. Controla. Vende más.
-          </h1>
+          <h1>Daniel Méndez Amutari</h1>
 
-          <p>
-            Sistemas web listos para ventas, inventario, caja y reportes.
+          <p class="hero-role">
+            Desarrollador de Software · Analista de Sistemas · Emprendedor
           </p>
+
+          <p class="hero-summary">
+            Desarrollador de software especializado en sistemas empresariales, POS,
+            facturación, inventarios y automatización comercial.
+            Con soluciones implementadas y en uso diario en farmacias, clínicas y comercios.
+          </p>
+
+          <div class="hero-meta">
+            <span>📍 Santa Cruz, Bolivia</span>
+            <span>🎓 EMI · Riberalta</span>
+            <span>💼 RiberSoft</span>
+          </div>
 
           <div class="hero-actions">
             <VBtn
@@ -101,57 +253,203 @@ const portfolio = [
                 class="flip-in-rtl"
                 icon="ri-arrow-right-line"
               />
-              Agenda por WhatsApp
+              WhatsApp
             </VBtn>
             <VBtn
-              href="#clientes"
+              :href="githubUrl"
+              target="_blank"
+              rel="noopener noreferrer"
               variant="outlined"
               color="primary"
               size="large"
               class="secondary-cta"
             >
-              Ver clientes
+              <VIcon
+                start
+                icon="ri-github-fill"
+              />
+              GitHub
+            </VBtn>
+            <VBtn
+              v-if="linkedinUrl"
+              :href="linkedinUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="outlined"
+              color="primary"
+              size="large"
+              class="secondary-cta"
+            >
+              <VIcon
+                start
+                icon="ri-linkedin-fill"
+              />
+              LinkedIn
             </VBtn>
           </div>
-        </div>
-
-        <div class="hero-visual">
-          <VImg
-            :src="heroImage"
-            class="hero-image"
-          />
         </div>
       </section>
 
       <section
-        id="soluciones"
-        class="solutions-section"
+        id="experiencia"
+        class="portfolio-section"
       >
-        <h2>Soluciones para mejorar tu negocio.</h2>
+        <div class="section-kicker">
+          Experiencia
+        </div>
+        <h2>Trayectoria profesional.</h2>
 
-        <div class="solution-grid">
+        <div class="timeline">
           <article
-            v-for="benefit in benefits"
-            :key="benefit.title"
-            class="solution-card"
+            v-for="job in experience"
+            :key="job.role"
+            class="timeline-card"
+          >
+            <div class="timeline-head">
+              <strong>{{ job.role }}</strong>
+              <span>{{ job.period }}</span>
+            </div>
+            <div class="timeline-company">
+              {{ job.company }} · {{ job.place }}
+            </div>
+            <ul>
+              <li
+                v-for="item in job.items"
+                :key="item"
+              >
+                {{ item }}
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="portfolio-section education-card">
+        <div class="section-kicker">
+          Educación
+        </div>
+        <h2>Ingeniería de Sistemas</h2>
+        <p>Escuela Militar de Ingeniería "Mcal. Antonio José de Sucre"</p>
+        <strong>Unidad Académica Riberalta</strong>
+      </section>
+
+      <section
+        id="sobre-mi"
+        class="portfolio-section about-section"
+      >
+        <div class="section-kicker">
+          Sobre mí
+        </div>
+        <h2>Conóceme un poco más.</h2>
+        <p class="section-lead">
+          No soy solo código y sistemas. Soy una persona que empezó arreglando computadoras,
+          aprendió a manejar negocios de adentro y hoy desarrolla software que clientes reales usan cada día.
+        </p>
+
+        <p class="about-story">
+          Mi recorrido pasó por reparación técnica, administración de operaciones y emprendimiento.
+          Eso me ayuda a hablar el idioma del negocio: entiendo la caja, el inventario y al equipo
+          que usa el sistema — no solo la pantalla.
+        </p>
+
+        <article class="growth-card">
+          <div class="growth-head">
+            <VIcon
+              icon="ri-line-chart-line"
+              size="24"
+              class="growth-icon"
+            />
+            <strong>En lo personal, soy ambicioso</strong>
+          </div>
+          <p>
+            Hoy estoy muy enfocado en conocer más sobre técnicas de ventas — no solo para sistemas,
+            sino para vender cualquier cosa. Compro cursos, estudio y practico. Me inspira
+            Jordan Belfort por su enfoque en ventas, persuasión y mentalidad de crecimiento.
+          </p>
+          <div class="focus-tags">
+            <span
+              v-for="item in growthFocus"
+              :key="item"
+            >
+              {{ item }}
+            </span>
+          </div>
+        </article>
+
+        <p class="about-aside">
+          Y fuera del trabajo, también soy una persona normal:
+        </p>
+
+        <div class="hobby-grid">
+          <article
+            v-for="hobby in hobbies"
+            :key="hobby.label"
+            class="hobby-card"
           >
             <VIcon
-              :icon="benefit.icon"
-              size="30"
+              :icon="hobby.icon"
+              size="28"
+              class="hobby-icon"
             />
-            <h3>{{ benefit.title }}</h3>
-            <a
-              :href="whatsappUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Empezar ahora
-              <VIcon
-                size="16"
-                icon="ri-whatsapp-line"
-              />
-            </a>
+            <strong>{{ hobby.label }}</strong>
+            <p>{{ hobby.note }}</p>
           </article>
+        </div>
+      </section>
+
+      <section
+        id="github"
+        class="portfolio-section"
+      >
+        <div class="section-kicker">
+          GitHub
+        </div>
+        <h2>Repositorios públicos.</h2>
+
+        <div class="repo-list">
+          <a
+            v-for="repo in githubRepos"
+            :key="repo.name"
+            :href="repo.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="repo-card"
+          >
+            <div class="repo-head">
+              <strong>{{ repo.name }}</strong>
+              <span>{{ repo.lang }}</span>
+            </div>
+            <p>{{ repo.desc }}</p>
+          </a>
+        </div>
+
+        <VBtn
+          :href="githubUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="tonal"
+          color="primary"
+          class="github-more"
+        >
+          Ver perfil completo en GitHub
+        </VBtn>
+      </section>
+
+      <section
+        id="stack"
+        class="portfolio-section"
+      >
+        <div class="section-kicker">
+          Stack
+        </div>
+        <h2>Tecnologías.</h2>
+        <div class="portfolio-grid">
+          <span
+            v-for="item in stack"
+            :key="item"
+          >
+            {{ item }}
+          </span>
         </div>
       </section>
 
@@ -160,32 +458,87 @@ const portfolio = [
         class="portfolio-section"
       >
         <div class="section-kicker">
-          Clientes
+          En producción
         </div>
-        <h2>Negocios que confían.</h2>
-        <div class="portfolio-grid">
-          <span
-            v-for="item in portfolio"
-            :key="item"
+        <h2>Negocios que ya usan su sistema.</h2>
+        <p class="section-lead">
+          Reseñas de negocios reales con software implementado.
+          Cada uno confirmó su satisfacción con el sistema que usa a diario.
+        </p>
+
+        <div class="client-grid">
+          <article
+            v-for="client in clients"
+            :key="client.name"
+            class="client-card"
           >
-            {{ item }}
-          </span>
+            <div class="client-head">
+              <strong>{{ client.name }}</strong>
+              <span class="client-type">{{ client.type }}</span>
+            </div>
+            <VChip
+              size="small"
+              color="success"
+              variant="tonal"
+              class="client-system"
+            >
+              {{ client.system }}
+            </VChip>
+            <blockquote class="client-review">
+              <VIcon
+                icon="ri-double-quotes-l"
+                size="18"
+                class="review-icon"
+              />
+              {{ client.review }}
+            </blockquote>
+          </article>
         </div>
       </section>
 
       <section class="final-card">
-        <h2>Sin compromiso.</h2>
-        <p>Te mostramos qué sistema puede ayudarte.</p>
-        <VBtn
-          :href="whatsappUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-          color="success"
-          size="large"
-          block
-        >
-          Contactar ahora
-        </VBtn>
+        <h2>¿Quieres un sistema que ya funcione en tu negocio?</h2>
+        <p>Santa Cruz, Bolivia · +591 67369293</p>
+        <div class="contact-links">
+          <VBtn
+            :href="whatsappUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            color="success"
+            size="large"
+          >
+            WhatsApp
+          </VBtn>
+          <VBtn
+            :href="`mailto:${email}`"
+            variant="outlined"
+            color="white"
+            size="large"
+          >
+            Email
+          </VBtn>
+          <VBtn
+            :href="githubUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="text"
+            color="white"
+            size="large"
+          >
+            GitHub
+          </VBtn>
+          <VBtn
+            v-if="linkedinUrl"
+            :href="linkedinUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="text"
+            color="white"
+            size="large"
+          >
+            LinkedIn
+          </VBtn>
+        </div>
       </section>
     </VContainer>
 
@@ -233,15 +586,9 @@ const portfolio = [
   padding: 0.65rem 0.75rem;
 }
 
-.brand-mark {
-  display: grid;
-  border-radius: 50%;
-  background: #118bd0;
-  color: #fff;
-  font-weight: 900;
-  inline-size: 38px;
-  place-items: center;
-  block-size: 38px;
+.nav-avatar {
+  border: 2px solid #fff;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
 }
 
 .brand-copy {
@@ -285,35 +632,69 @@ const portfolio = [
 .hero-section {
   display: flex;
   flex-direction: column;
+  align-items: center;
   overflow: hidden;
   border-radius: 28px;
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 18px 50px rgba(30, 64, 175, 0.1);
-  margin-block: 1.2rem 2.5rem;
-  padding: 1.5rem 1rem 0.5rem;
+  margin-block: 1.2rem 2rem;
+  padding: 1.5rem 1rem;
   text-align: center;
+}
+
+.profile-photo {
+  border: 4px solid #fff;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.16);
+  margin-block-end: 1rem;
 }
 
 .hero-badge {
   font-weight: 800;
-  margin-block-end: 0.9rem;
+  margin-block-end: 0.75rem;
 }
 
 .hero-copy {
   h1 {
     font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(2.25rem, 11vw, 4rem);
+    font-size: clamp(1.9rem, 9vw, 3.2rem);
     font-weight: 500;
     letter-spacing: -0.04em;
-    line-height: 1.05;
+    line-height: 1.08;
     margin: 0;
   }
+}
 
-  p {
-    color: #64748b;
-    font-size: 1.02rem;
-    line-height: 1.62;
-    margin-block: 1rem 1rem;
+.hero-role {
+  color: #118bd0;
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin-block: 0.65rem 0.5rem;
+}
+
+.hero-summary {
+  color: #64748b;
+  font-size: clamp(0.92rem, 3.6vw, 1rem);
+  line-height: 1.62;
+  margin-block: 0 0.75rem;
+  margin-inline: auto;
+  max-inline-size: 34rem;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem;
+  margin-block-end: 1rem;
+
+  span {
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 999px;
+    background: #f8fafc;
+    color: #475569;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.45rem 0.75rem;
   }
 }
 
@@ -330,29 +711,6 @@ const portfolio = [
   font-weight: 800;
 }
 
-.phone-link {
-  color: #0f2f66;
-  font-size: 0.95rem;
-  font-weight: 700;
-  text-align: center;
-  text-decoration: none;
-}
-
-.hero-visual {
-  position: relative;
-  overflow: hidden;
-  background: transparent;
-  margin-block-start: 0.75rem;
-}
-
-.hero-image {
-  min-block-size: 190px;
-
-  :deep(.v-img__img) {
-    object-fit: contain;
-  }
-}
-
 .final-card,
 .portfolio-section {
   border: 1px solid rgba(15, 23, 42, 0.08);
@@ -361,61 +719,6 @@ const portfolio = [
   box-shadow: 0 16px 44px rgba(15, 23, 42, 0.08);
   margin-block-start: 1rem;
   padding: 1.1rem;
-}
-
-.solutions-section {
-  margin-block: 1.5rem;
-  text-align: center;
-
-  h2 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(1.8rem, 8vw, 3rem);
-    font-weight: 500;
-    letter-spacing: -0.035em;
-    line-height: 1.08;
-    margin-block: 0 1.2rem;
-  }
-}
-
-.solution-grid {
-  display: grid;
-  gap: 0.85rem;
-}
-
-.solution-card {
-  border-radius: 14px;
-  color: #fff;
-  min-block-size: 132px;
-  padding: 1rem;
-  text-align: start;
-
-  &:nth-child(1) {
-    background: #7c3aed;
-  }
-
-  &:nth-child(2) {
-    background: #f59e0b;
-  }
-
-  &:nth-child(3) {
-    background: #1d9bf0;
-  }
-
-  h3 {
-    font-size: 1.2rem;
-    font-weight: 900;
-    margin-block: 0.6rem 0.9rem;
-  }
-
-  a {
-    display: inline-flex;
-    align-items: center;
-    color: #fff;
-    font-size: 0.9rem;
-    font-weight: 800;
-    gap: 0.35rem;
-    text-decoration: none;
-  }
 }
 
 .section-kicker {
@@ -444,6 +747,277 @@ const portfolio = [
   }
 }
 
+.section-lead {
+  font-size: 0.95rem;
+  max-inline-size: 42rem;
+}
+
+.client-grid {
+  display: grid;
+  gap: 0.85rem;
+  margin-block-start: 1rem;
+}
+
+.client-card {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  background: #f8fafc;
+  padding: 1rem;
+}
+
+.client-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+
+  strong {
+    color: #0f172a;
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+}
+
+.client-type {
+  border-radius: 999px;
+  background: #ecfdf5;
+  color: #14532d;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.25rem 0.55rem;
+  white-space: nowrap;
+}
+
+.client-system {
+  margin-block-start: 0.65rem;
+  font-weight: 700;
+}
+
+.client-review {
+  position: relative;
+  border: 0;
+  color: #334155;
+  font-size: 0.92rem;
+  font-style: italic;
+  line-height: 1.6;
+  margin: 0.75rem 0 0;
+  padding-inline-start: 1.5rem;
+}
+
+.review-icon {
+  position: absolute;
+  color: #16a34a;
+  inset-block-start: 0.1rem;
+  inset-inline-start: 0;
+  opacity: 0.85;
+}
+
+.education-card {
+  strong {
+    display: block;
+    color: #0f172a;
+    font-size: 1rem;
+    margin-block-start: 0.35rem;
+  }
+}
+
+.about-section {
+  background: linear-gradient(180deg, #fff 0%, #f8fbff 100%);
+}
+
+.about-story,
+.about-aside {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin-block: 0.85rem 0;
+}
+
+.about-aside {
+  color: #64748b;
+  font-size: 0.92rem;
+  margin-block-start: 1.1rem;
+}
+
+.hobby-grid {
+  display: grid;
+  gap: 0.85rem;
+  margin-block-start: 0.85rem;
+}
+
+.hobby-card {
+  border: 1px solid rgba(17, 139, 208, 0.12);
+  border-radius: 18px;
+  background: #fff;
+  padding: 1rem;
+
+  strong {
+    display: block;
+    color: #0f172a;
+    font-size: 1rem;
+    margin-block: 0.55rem 0.25rem;
+  }
+
+  p {
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+}
+
+.hobby-icon {
+  color: #118bd0;
+}
+
+.growth-card {
+  border: 1px solid rgba(251, 140, 0, 0.18);
+  border-radius: 18px;
+  background: linear-gradient(135deg, #fffbeb 0%, #fff 100%);
+  margin-block-start: 1rem;
+  padding: 1rem;
+
+  p {
+    color: #475569;
+    font-size: 0.94rem;
+    line-height: 1.65;
+    margin-block: 0.65rem 0.85rem;
+  }
+}
+
+.growth-head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+
+  strong {
+    color: #0f172a;
+    font-size: 1rem;
+  }
+}
+
+.growth-icon {
+  color: #f59e0b;
+}
+
+.focus-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  span {
+    border: 1px solid rgba(245, 158, 11, 0.22);
+    border-radius: 999px;
+    background: #fff;
+    color: #92400e;
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 0.42rem 0.68rem;
+  }
+}
+
+.timeline {
+  display: grid;
+  gap: 0.85rem;
+  margin-block-start: 1rem;
+}
+
+.timeline-card {
+  border-radius: 18px;
+  background: #f8fafc;
+  padding: 1rem;
+
+  ul {
+    margin: 0.65rem 0 0;
+    padding-inline-start: 1.1rem;
+  }
+
+  li {
+    color: #475569;
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+}
+
+.timeline-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+
+  strong {
+    color: #0f172a;
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  span {
+    color: #64748b;
+    font-size: 0.78rem;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+}
+
+.timeline-company {
+  color: #118bd0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin-block-start: 0.25rem;
+}
+
+.repo-list {
+  display: grid;
+  gap: 0.75rem;
+  margin-block-start: 1rem;
+}
+
+.repo-card {
+  display: block;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  background: #f8fafc;
+  color: inherit;
+  padding: 0.95rem;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    transform: translateY(-2px);
+  }
+
+  p {
+    font-size: 0.9rem;
+    margin-block: 0.45rem 0;
+  }
+}
+
+.repo-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+
+  strong {
+    color: #0f172a;
+    font-size: 0.98rem;
+  }
+
+  span {
+    border-radius: 999px;
+    background: #ecfdf5;
+    color: #14532d;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.25rem 0.55rem;
+  }
+}
+
+.github-more {
+  margin-block-start: 1rem;
+}
+
 .portfolio-grid {
   display: flex;
   flex-wrap: wrap;
@@ -465,10 +1039,19 @@ const portfolio = [
   background: linear-gradient(135deg, #0f2f66, #0b1730);
   color: #fff;
   margin-block-end: 1.25rem;
+  text-align: center;
 
   p {
     color: rgba(255, 255, 255, 0.72);
   }
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-block-start: 1rem;
 }
 
 .sticky-cta {
@@ -495,15 +1078,8 @@ const portfolio = [
 
   .hero-section {
     margin-inline: auto;
-    max-inline-size: 900px;
-    padding: 2rem 2rem 0.75rem;
-  }
-
-  .hero-copy {
-    p {
-      font-size: 1.12rem;
-      max-inline-size: 620px;
-    }
+    max-inline-size: 760px;
+    padding: 2rem;
   }
 
   .hero-actions {
@@ -512,16 +1088,20 @@ const portfolio = [
     }
   }
 
-  .phone-link {
-    text-align: start;
+  .repo-list {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .hero-image {
-    min-block-size: 330px;
+  .client-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .solution-grid {
-    grid-template-columns: repeat(3, 1fr);
+  .hobby-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .focus-tags span {
+    font-size: 0.82rem;
   }
 
   .final-card,
@@ -541,11 +1121,7 @@ const portfolio = [
 
   .hero-copy {
     h1 {
-      font-size: 1.95rem;
-    }
-
-    p {
-      font-size: 0.96rem;
+      font-size: 1.75rem;
     }
   }
 }
