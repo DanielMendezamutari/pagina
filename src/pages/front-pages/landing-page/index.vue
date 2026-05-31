@@ -1,8 +1,13 @@
 <script setup>
 import profilePhoto from '@images/profile/profile-daniel.png'
+import { personSeo } from '@/config/seo'
 import { useConfigStore } from '@core/stores/config'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 const store = useConfigStore()
+const landingRef = ref(null)
+
+useTitle(personSeo.title)
 
 store.skin = 'default'
 definePage({
@@ -11,6 +16,48 @@ definePage({
     public: true,
   },
 })
+
+let revealObserver = null
+
+onMounted(() => {
+  const root = landingRef.value
+  if (!root)
+    return
+
+  const revealEls = root.querySelectorAll('.reveal')
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  if (prefersReduced) {
+    revealEls.forEach(el => el.classList.add('is-visible'))
+
+    return
+  }
+
+  revealObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible')
+          revealObserver?.unobserve(entry.target)
+        }
+      })
+    },
+    {
+      threshold: 0.12,
+      rootMargin: '0px 0px -32px 0px',
+    },
+  )
+
+  revealEls.forEach(el => revealObserver.observe(el))
+})
+
+onUnmounted(() => {
+  revealObserver?.disconnect()
+})
+
+function revealDelay(index, step = 0.08, base = 0) {
+  return { '--reveal-delay': `${base + index * step}s` }
+}
 
 const whatsappUrl = 'https://wa.me/59167369293?text=Hola%20Daniel%2C%20me%20interesa%20conversar%20sobre%20un%20proyecto%20de%20software.'
 const email = 'contacto@ribersoft.com'
@@ -172,9 +219,14 @@ const growthFocus = [
 </script>
 
 <template>
-  <main class="mobile-landing">
+  <main
+    ref="landingRef"
+    class="mobile-landing"
+    itemscope
+    itemtype="https://schema.org/ProfilePage"
+  >
     <VContainer class="page-shell">
-      <nav class="topbar">
+      <nav class="topbar anim-load anim-fade-down">
         <VAvatar
           :image="profilePhoto"
           size="38"
@@ -209,37 +261,40 @@ const growthFocus = [
         <VAvatar
           :image="profilePhoto"
           size="128"
-          class="profile-photo"
+          class="profile-photo anim-load anim-hero-photo"
+          alt="Daniel Méndez Amutari, desarrollador de software en Santa Cruz, Bolivia"
         />
 
         <div class="hero-copy">
           <VChip
             color="success"
             variant="elevated"
-            class="hero-badge"
+            class="hero-badge anim-load anim-fade-up anim-delay-1"
           >
             Disponible para proyectos
           </VChip>
 
-          <h1>Daniel Méndez Amutari</h1>
+          <h1 class="anim-load anim-fade-up anim-delay-2">
+            Daniel Méndez Amutari
+          </h1>
 
-          <p class="hero-role">
+          <p class="hero-role anim-load anim-fade-up anim-delay-3">
             Desarrollador de Software · Analista de Sistemas · Emprendedor
           </p>
 
-          <p class="hero-summary">
+          <p class="hero-summary anim-load anim-fade-up anim-delay-4">
             Desarrollador de software especializado en sistemas empresariales, POS,
             facturación, inventarios y automatización comercial.
             Con soluciones implementadas y en uso diario en farmacias, clínicas y comercios.
           </p>
 
-          <div class="hero-meta">
+          <div class="hero-meta anim-load anim-fade-up anim-delay-5">
             <span>📍 Santa Cruz, Bolivia</span>
             <span>🎓 EMI · Riberalta</span>
             <span>💼 RiberSoft</span>
           </div>
 
-          <div class="hero-actions">
+          <div class="hero-actions anim-load anim-fade-up anim-delay-6">
             <VBtn
               :href="whatsappUrl"
               target="_blank"
@@ -294,16 +349,19 @@ const growthFocus = [
         id="experiencia"
         class="portfolio-section"
       >
-        <div class="section-kicker">
+        <div class="section-kicker reveal">
           Experiencia
         </div>
-        <h2>Trayectoria profesional.</h2>
+        <h2 class="reveal reveal-stagger" :style="revealDelay(0, 0, 0.05)">
+          Trayectoria profesional.
+        </h2>
 
         <div class="timeline">
           <article
-            v-for="job in experience"
+            v-for="(job, index) in experience"
             :key="job.role"
-            class="timeline-card"
+            class="timeline-card reveal reveal-stagger hover-lift"
+            :style="revealDelay(index, 0.1)"
           >
             <div class="timeline-head">
               <strong>{{ job.role }}</strong>
@@ -324,7 +382,7 @@ const growthFocus = [
         </div>
       </section>
 
-      <section class="portfolio-section education-card">
+      <section class="portfolio-section education-card reveal">
         <div class="section-kicker">
           Educación
         </div>
@@ -337,22 +395,30 @@ const growthFocus = [
         id="sobre-mi"
         class="portfolio-section about-section"
       >
-        <div class="section-kicker">
+        <div class="section-kicker reveal">
           Sobre mí
         </div>
-        <h2>Conóceme un poco más.</h2>
-        <p class="section-lead">
+        <h2 class="reveal reveal-stagger" :style="revealDelay(0, 0, 0.05)">
+          Conóceme un poco más.
+        </h2>
+        <p
+          class="section-lead reveal reveal-stagger"
+          :style="revealDelay(0, 0, 0.1)"
+        >
           No soy solo código y sistemas. Soy una persona que empezó arreglando computadoras,
           aprendió a manejar negocios de adentro y hoy desarrolla software que clientes reales usan cada día.
         </p>
 
-        <p class="about-story">
+        <p
+          class="about-story reveal reveal-stagger"
+          :style="revealDelay(0, 0, 0.15)"
+        >
           Mi recorrido pasó por reparación técnica, administración de operaciones y emprendimiento.
           Eso me ayuda a hablar el idioma del negocio: entiendo la caja, el inventario y al equipo
           que usa el sistema — no solo la pantalla.
         </p>
 
-        <article class="growth-card">
+        <article class="growth-card reveal reveal-stagger hover-lift">
           <div class="growth-head">
             <VIcon
               icon="ri-line-chart-line"
@@ -382,9 +448,10 @@ const growthFocus = [
 
         <div class="hobby-grid">
           <article
-            v-for="hobby in hobbies"
+            v-for="(hobby, index) in hobbies"
             :key="hobby.label"
-            class="hobby-card"
+            class="hobby-card reveal reveal-stagger hover-lift"
+            :style="revealDelay(index, 0.08, 0.1)"
           >
             <VIcon
               :icon="hobby.icon"
@@ -401,19 +468,22 @@ const growthFocus = [
         id="github"
         class="portfolio-section"
       >
-        <div class="section-kicker">
+        <div class="section-kicker reveal">
           GitHub
         </div>
-        <h2>Repositorios públicos.</h2>
+        <h2 class="reveal reveal-stagger" :style="revealDelay(0, 0, 0.05)">
+          Repositorios públicos.
+        </h2>
 
         <div class="repo-list">
           <a
-            v-for="repo in githubRepos"
+            v-for="(repo, index) in githubRepos"
             :key="repo.name"
             :href="repo.url"
             target="_blank"
             rel="noopener noreferrer"
-            class="repo-card"
+            class="repo-card reveal reveal-stagger hover-lift"
+            :style="revealDelay(index, 0.08, 0.1)"
           >
             <div class="repo-head">
               <strong>{{ repo.name }}</strong>
@@ -439,14 +509,18 @@ const growthFocus = [
         id="stack"
         class="portfolio-section"
       >
-        <div class="section-kicker">
+        <div class="section-kicker reveal">
           Stack
         </div>
-        <h2>Tecnologías.</h2>
+        <h2 class="reveal reveal-stagger" :style="revealDelay(0, 0, 0.05)">
+          Tecnologías.
+        </h2>
         <div class="portfolio-grid">
           <span
-            v-for="item in stack"
+            v-for="(item, index) in stack"
             :key="item"
+            class="reveal reveal-stagger stack-chip"
+            :style="revealDelay(index, 0.05, 0.15)"
           >
             {{ item }}
           </span>
@@ -457,20 +531,26 @@ const growthFocus = [
         id="clientes"
         class="portfolio-section"
       >
-        <div class="section-kicker">
+        <div class="section-kicker reveal">
           En producción
         </div>
-        <h2>Negocios que ya usan su sistema.</h2>
-        <p class="section-lead">
+        <h2 class="reveal reveal-stagger" :style="revealDelay(0, 0, 0.05)">
+          Negocios que ya usan su sistema.
+        </h2>
+        <p
+          class="section-lead reveal reveal-stagger"
+          :style="revealDelay(0, 0, 0.1)"
+        >
           Reseñas de negocios reales con software implementado.
           Cada uno confirmó su satisfacción con el sistema que usa a diario.
         </p>
 
         <div class="client-grid">
           <article
-            v-for="client in clients"
+            v-for="(client, index) in clients"
             :key="client.name"
-            class="client-card"
+            class="client-card reveal reveal-stagger hover-lift"
+            :style="revealDelay(index, 0.06, 0.1)"
           >
             <div class="client-head">
               <strong>{{ client.name }}</strong>
@@ -496,9 +576,13 @@ const growthFocus = [
         </div>
       </section>
 
-      <section class="final-card">
-        <h2>¿Quieres un sistema que ya funcione en tu negocio?</h2>
-        <p>Santa Cruz, Bolivia · +591 67369293</p>
+      <section class="final-card reveal reveal-scale">
+        <h2 class="final-title">
+          ¿Tienes un proyecto en mente? Hablemos.
+        </h2>
+        <p class="final-subtitle">
+          Cuéntame qué necesita tu negocio · Santa Cruz, Bolivia · +591 67369293
+        </p>
         <div class="contact-links">
           <VBtn
             :href="whatsappUrl"
@@ -542,7 +626,7 @@ const growthFocus = [
       </section>
     </VContainer>
 
-    <div class="sticky-cta">
+    <div class="sticky-cta anim-load anim-slide-up">
       <VBtn
         :href="whatsappUrl"
         target="_blank"
@@ -570,6 +654,170 @@ const growthFocus = [
     linear-gradient(180deg, #fff 0%, #f8fbff 45%, #fff 100%);
   color: #0f172a;
   padding-block-end: 5.5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes fade-down {
+    from {
+      opacity: 0;
+      transform: translateY(-16px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hero-photo-in {
+    from {
+      opacity: 0;
+      transform: scale(0.88);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes reveal-up {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes reveal-scale {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .anim-load {
+    animation-duration: 0.65s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .anim-fade-down {
+    animation-name: fade-down;
+  }
+
+  .anim-fade-up {
+    animation-name: fade-up;
+  }
+
+  .anim-hero-photo {
+    animation-duration: 0.8s;
+    animation-name: hero-photo-in;
+  }
+
+  .anim-slide-up {
+    animation-delay: 0.9s;
+    animation-duration: 0.55s;
+    animation-name: slide-up;
+  }
+
+  .anim-delay-1 { animation-delay: 0.12s; }
+  .anim-delay-2 { animation-delay: 0.22s; }
+  .anim-delay-3 { animation-delay: 0.32s; }
+  .anim-delay-4 { animation-delay: 0.42s; }
+  .anim-delay-5 { animation-delay: 0.52s; }
+  .anim-delay-6 { animation-delay: 0.62s; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0s);
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-scale.is-visible {
+    animation: reveal-scale 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--reveal-delay, 0s);
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .hover-lift {
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+  }
+
+  .hover-lift:hover {
+    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.1);
+    transform: translateY(-4px);
+  }
+
+  .stack-chip.is-visible:hover {
+    transform: translateY(-2px) scale(1.04);
+  }
+
+  .main-cta {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .main-cta:hover {
+    transform: translateY(-2px);
+  }
+
+  .top-whatsapp {
+    transition: transform 0.2s ease;
+  }
+
+  .top-whatsapp:hover {
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .page-shell {
@@ -634,8 +882,9 @@ const growthFocus = [
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  border: 2px solid #0f172a;
   border-radius: 28px;
-  background: rgba(255, 255, 255, 0.95);
+  background: #fff;
   box-shadow: 0 18px 50px rgba(30, 64, 175, 0.1);
   margin-block: 1.2rem 2rem;
   padding: 1.5rem 1rem;
@@ -655,9 +904,10 @@ const growthFocus = [
 
 .hero-copy {
   h1 {
+    color: #0f172a;
     font-family: Georgia, "Times New Roman", serif;
     font-size: clamp(1.9rem, 9vw, 3.2rem);
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: -0.04em;
     line-height: 1.08;
     margin: 0;
@@ -665,15 +915,16 @@ const growthFocus = [
 }
 
 .hero-role {
-  color: #118bd0;
+  color: #0c4a6e;
   font-size: 0.95rem;
   font-weight: 800;
   margin-block: 0.65rem 0.5rem;
 }
 
 .hero-summary {
-  color: #64748b;
+  color: #334155;
   font-size: clamp(0.92rem, 3.6vw, 1rem);
+  font-weight: 500;
   line-height: 1.62;
   margin-block: 0 0.75rem;
   margin-inline: auto;
@@ -1025,24 +1276,52 @@ const growthFocus = [
   margin-block-start: 1rem;
 
   span {
-    border: 1px solid rgba(22, 163, 74, 0.18);
+    border: 1px solid rgba(15, 23, 42, 0.08);
     border-radius: 999px;
     background: #ecfdf5;
     color: #14532d;
+    display: inline-block;
     font-size: 0.84rem;
     font-weight: 800;
     padding: 0.52rem 0.72rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 }
 
 .final-card {
-  background: linear-gradient(135deg, #0f2f66, #0b1730);
+  border: 3px solid #38bdf8;
+  background: #0f2f66;
   color: #fff;
   margin-block-end: 1.25rem;
   text-align: center;
 
-  p {
-    color: rgba(255, 255, 255, 0.72);
+  .final-title {
+    color: #fff;
+    font-size: 1.45rem;
+    font-weight: 900;
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  .final-subtitle {
+    color: #e2e8f0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.55;
+    margin-block: 0.75rem 0;
+  }
+
+  :deep(.v-btn--variant-outlined) {
+    border: 2px solid #fff !important;
+    color: #fff !important;
+  }
+
+  :deep(.v-btn--variant-text) {
+    color: #fff !important;
+    opacity: 1;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 }
 
@@ -1123,6 +1402,99 @@ const growthFocus = [
     h1 {
       font-size: 1.75rem;
     }
+  }
+}
+
+@media (inverted-colors: inverted) {
+  .mobile-landing {
+    background: #fff;
+  }
+
+  .hero-section {
+    border: 3px solid #000;
+    background: #fff;
+    box-shadow: none;
+  }
+
+  .hero-copy h1 {
+    color: #000 !important;
+  }
+
+  .hero-role {
+    color: #000 !important;
+  }
+
+  .hero-summary {
+    color: #1a1a1a !important;
+  }
+
+  .hero-meta span {
+    border: 2px solid #000;
+    background: #fff;
+    color: #000;
+  }
+
+  .final-card {
+    border: 3px solid #000;
+    background: #000;
+    color: #fff;
+
+    .final-title,
+    .final-subtitle {
+      color: #fff !important;
+    }
+
+    :deep(.v-btn--variant-outlined) {
+      border: 2px solid #fff !important;
+      color: #fff !important;
+    }
+
+    :deep(.v-btn--variant-text) {
+      color: #fff !important;
+    }
+  }
+}
+
+@media (prefers-contrast: more) {
+  .hero-section {
+    border-width: 3px;
+  }
+
+  .hero-copy h1,
+  .hero-role,
+  .hero-summary {
+    color: #000;
+  }
+
+  .final-card {
+    border-width: 4px;
+    background: #000;
+
+    .final-title,
+    .final-subtitle {
+      color: #fff;
+    }
+  }
+}
+
+@media (forced-colors: active) {
+  .hero-section,
+  .final-card,
+  .portfolio-section {
+    border: 2px solid CanvasText;
+  }
+
+  .hero-copy h1,
+  .hero-role,
+  .hero-summary,
+  .final-title,
+  .final-subtitle {
+    color: CanvasText;
+  }
+
+  .final-card {
+    background: Canvas;
+    forced-color-adjust: none;
   }
 }
 </style>

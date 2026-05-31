@@ -10,7 +10,7 @@ import { AppContentLayoutNav, ContentWidth, FooterType, NavbarType } from '@layo
 
 export const { themeConfig, layoutConfig } = defineThemeConfig({
   app: {
-    title: 'ribersoft-pos',
+    title: 'Daniel Méndez',
 
     // ❗ Using favicon as logo
     logo: h('img', { src: faviconLogo, style: 'height: 40px; width: auto' }),

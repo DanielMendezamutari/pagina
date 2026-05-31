@@ -1,0 +1,25 @@
+Ahora borra el build viejo:
+
+rm -rf dist
+
+Genera nuevamente:
+
+npm run build
+
+Sube el nuevo dist:
+
+git add -f dist/
+git commit -m "Genera dist actualizado para rama daniel"
+git push origin daniel
+
+Luego en hosting:
+
+cd ~/daniel.ribersoft.com/repo
+git pull origin daniel
+cd ..
+rm -rf assets images index.html favicon.ico loader.css mockServiceWorker.js
+cp -r repo/dist/* ./
+
+Y prueba:
+
+https://daniel.ribersoft.com
